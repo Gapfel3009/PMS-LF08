@@ -1,12 +1,16 @@
 package de.szut.lf8_starter.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -35,7 +39,10 @@ public class Project {
     @Column(name = "project_geplantesEnddatum")
     private Date geplantesEnddatum;
 
-    @Column(name = "project_tatsächlichesEnddatum")
-    private Date tatsächlichesEnddatum;
+    @Column(name = "project_tatsaechlichesEnddatum")
+    private Date tatsaechlichesEnddatum;
+
+    @ElementCollection
+    private List<Long> employeeId;
 
 }
