@@ -27,6 +27,9 @@ public class Project {
     @Column(name = "project_verMAid")
     private int VerMAid;
 
+    @Column(name = "zuMA")
+    private String zuMAname;
+
     @Column(name = "project_kundenID")
     private int KundenId;
 
