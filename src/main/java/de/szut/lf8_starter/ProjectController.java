@@ -3,7 +3,6 @@ package de.szut.lf8_starter;
 import de.szut.lf8_starter.model.Employee;
 import de.szut.lf8_starter.model.Project;
 import de.szut.lf8_starter.service.ProjectService;
-import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +13,10 @@ import java.util.List;
 public class ProjectController {
 
 
-    private final EnableSpringDataWebSupport.SpringDataWebConfigurationImportSelector springDataWebConfigurationImportSelector;
-    ProjectService projectService;
+    private ProjectService projectService;
 
-    public ProjectController(EnableSpringDataWebSupport.SpringDataWebConfigurationImportSelector springDataWebConfigurationImportSelector) {
-        this.springDataWebConfigurationImportSelector = springDataWebConfigurationImportSelector;
+    public ProjectController(ProjectService projectService) {
+        this.projectService = projectService;
     }
 
     @PostMapping

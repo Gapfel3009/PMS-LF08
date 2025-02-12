@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.List;
 
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -37,7 +38,7 @@ public class Employee {
     @Column(name = "employee_phone")
     private String phone;
 
-
+    @ElementCollection
     private List<Skill> skillSet;
 
 

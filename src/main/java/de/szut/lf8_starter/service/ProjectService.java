@@ -5,13 +5,12 @@ import de.szut.lf8_starter.model.Project;
 import de.szut.lf8_starter.repository.EmployeeRepository;
 import de.szut.lf8_starter.repository.ProjectRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ProjectService {
     ProjectRepository repository;
     EmployeeRepository employeeRepository;
