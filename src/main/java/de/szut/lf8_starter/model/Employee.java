@@ -13,17 +13,17 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-@Table(name = "Employee")
+@Table(name = "employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
     private long id;
 
-    @Column(name = "employee_lastName")
+    @Column(name = "employee_last_name")
     private String lastName;
 
-    @Column(name = "employee_firstName")
+    @Column(name = "employee_first_name")
     private String firstName;
 
     @Column(name = "employee_street")
@@ -38,8 +38,16 @@ public class Employee {
     @Column(name = "employee_phone")
     private String phone;
 
-    @ElementCollection
-    private List<Skill> skillSet;
+    @ManyToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.LAZY
+    )
+    @JoinTable(
+            name = "employee_skill",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id")
+    )
+    private List<Skill> skill_set;
 
 
 }

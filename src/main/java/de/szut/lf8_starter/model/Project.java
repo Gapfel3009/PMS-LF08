@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "Projekte")
+@Table(name = "project")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,28 +24,28 @@ public class Project {
     @Column(name = "project_bezeichnung")
     private String Bezeichnung;
 
-    @Column(name = "project_verMAid")
+    @Column(name = "project_ver_ma_id")
     private int VerMAid;
 
-    @Column(name = "zuMA")
+    @Column(name = "zu_ma")
     private String zuMAname;
 
-    @Column(name = "project_kundenID")
+    @Column(name = "project_kunden_id")
     private int KundenId;
 
     @Column(name = "project_kommentar")
     private String Kommentar;
 
-    @Column(name = "project_startDatum")
+    @Column(name = "project_start_datum")
     private Date Startdatum;
 
-    @Column(name = "project_geplantesEnddatum")
+    @Column(name = "project_geplantes_enddatum")
     private Date geplantesEnddatum;
 
-    @Column(name = "project_tatsaechlichesEnddatum")
+    @Column(name = "project_tatsaechliches_enddatum")
     private Date tatsaechlichesEnddatum;
 
     @ElementCollection
-    private List<Long> employeeId;
+    private List<Long> employee_id;
 
 }
