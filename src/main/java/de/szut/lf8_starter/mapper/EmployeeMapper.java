@@ -28,7 +28,7 @@ public class EmployeeMapper {
                 .stream()
                 .map(skillMapper::DTOToSkill)
                 .toList();
-        employee.setSkillSet(mapped);
+        employee.setSkill_set(mapped);
 
         return employee;
     }

@@ -16,7 +16,7 @@ public class ProjectMapper {
         project.setVerMAid(projectDTO.getVerMAid());
         project.setZuMAname(projectDTO.getZuMAname());
         project.setKundenId(projectDTO.getKundenId());
-        project.setEmployeeId(projectDTO.getEmployeeId());
+        project.setEmployee_id(projectDTO.getEmployeeId());
         return project;
     }
 }

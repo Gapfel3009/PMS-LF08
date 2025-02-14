@@ -38,7 +38,7 @@ public ResponseEntity<Project> getProjectDetails(long id) {
 public ResponseEntity<List<Employee>> getProjectEmployees(long id) {
     return repository.findById(id)
             .map(project -> {
-                List<Employee> employees = employeeRepository.findAllById(project.getEmployeeId());
+                List<Employee> employees = employeeRepository.findAllById(project.getEmployee_id());
                 return ResponseEntity.ok(employees);
             })
             .orElse(ResponseEntity.notFound().build());
