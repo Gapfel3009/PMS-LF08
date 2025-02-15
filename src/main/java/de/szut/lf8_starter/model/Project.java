@@ -48,4 +48,20 @@ public class Project {
     @ElementCollection
     private List<Long> employee_id;
 
+    @Override
+    public String toString() {
+        return "Project{" +
+                "Id=" + Id +
+                ", Bezeichnung='" + Bezeichnung + '\'' +
+                ", VerMAid=" + VerMAid +
+                ", zuMAname='" + zuMAname + '\'' +
+                ", KundenId=" + KundenId +
+                ", Kommentar='" + Kommentar + '\'' +
+                ", Startdatum=" + Startdatum +
+                ", geplantesEnddatum=" + geplantesEnddatum +
+                ", tatsaechlichesEnddatum=" + tatsaechlichesEnddatum +
+                ", employee_id=" + employee_id +
+                '}';
+    }
+
 }
