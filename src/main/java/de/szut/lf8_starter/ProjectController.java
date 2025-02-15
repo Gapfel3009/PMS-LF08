@@ -66,4 +66,8 @@ public ResponseEntity<Project> updateProject(@PathVariable long id, @RequestBody
         return ResponseEntity.ok(updatedProject);
 }
 
+@PutMapping("/{id}/employee/{employeeid}")
+public void putEmployee(@PathVariable int id, @PathVariable int employeeId) {
+    projectService.putEmployeeByID(id,employeeId);
+}
 }

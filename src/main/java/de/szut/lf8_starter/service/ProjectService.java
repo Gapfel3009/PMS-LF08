@@ -66,4 +66,20 @@ public Project updateProject(long id, Project project) {
         }
 }
 
+    public void putEmployeeByID(long id, long employeeId) {
+        Optional<Project> optionalProjectproject = repository.findById(id);
+        if(optionalProjectproject.isPresent()) {
+            Project project = optionalProjectproject.get();
+            if(repository.findOverlapsDate(employeeId,project.getStartdatum(), project.getGeplantesEnddatum()).isEmpty()){
+                List<Long> newEmployeeList = project.getEmployee_id();
+                newEmployeeList.add(employeeId);
+                project.setEmployee_id(newEmployeeList);
+                repository.save(project);
+            }else {
+                throw new RuntimeException("Die Zeiträume anderer Projekte überschneiden sich für diesen Mitarbeiter");
+            }
+
+        }
+    }
+
 }
