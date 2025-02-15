@@ -4,6 +4,7 @@ import de.szut.lf8_starter.model.Employee;
 import de.szut.lf8_starter.model.Project;
 import de.szut.lf8_starter.repository.EmployeeRepository;
 import de.szut.lf8_starter.repository.ProjectRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ProjectService {
-    ProjectRepository repository;
-    EmployeeRepository employeeRepository;
+    final ProjectRepository repository;
+    final EmployeeRepository employeeRepository;
 
 public void delete(long id) {
     if(repository.existsById(id))
