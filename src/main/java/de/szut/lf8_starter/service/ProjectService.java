@@ -17,7 +17,7 @@ public class ProjectService {
     final ProjectRepository repository;
     final EmployeeRepository employeeRepository;
 
-public void delete(long id) {
+    public void delete(long id) {
     if(repository.existsById(id))
     {
         repository.deleteById(id);
@@ -45,4 +45,25 @@ public ResponseEntity<List<Employee>> getProjectEmployees(long id) {
             })
             .orElse(ResponseEntity.notFound().build());
 }
+
+public Project updateProject(long id, Project project) {
+        Optional<Project> existingOptionalProject = repository.findById(id);
+        if(existingOptionalProject.isPresent()) {
+            Project existingProject = existingOptionalProject.get();
+
+            existingProject.setBezeichnung(project.getBezeichnung());
+            existingProject.setVerMAid(project.getVerMAid());
+            existingProject.setZuMAname(project.getZuMAname());
+            existingProject.setKundenId(project.getKundenId());
+            existingProject.setKommentar(project.getKommentar());
+            existingProject.setStartdatum(project.getStartdatum());
+            existingProject.setGeplantesEnddatum(project.getGeplantesEnddatum());
+            existingProject.setTatsaechlichesEnddatum(project.getTatsaechlichesEnddatum());
+            existingProject.setEmployee_id(project.getEmployee_id());
+            return repository.save(existingProject);
+        }else{
+            throw new RuntimeException("Projekt mit der ID " + id +" nicht gefunden");
+        }
+}
+
 }

@@ -60,5 +60,10 @@ public ResponseEntity<Project> getProjectDetails(@PathVariable int id) {
     }
     return null;
 }
+@PutMapping("/{id}")
+public ResponseEntity<Project> updateProject(@PathVariable long id, @RequestBody Project project) {
+        Project updatedProject = projectService.updateProject(id, project);
+        return ResponseEntity.ok(updatedProject);
+}
 
 }
