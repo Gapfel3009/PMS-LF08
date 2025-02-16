@@ -5,6 +5,7 @@ import de.szut.lf8_starter.model.Project;
 import de.szut.lf8_starter.repository.EmployeeRepository;
 import de.szut.lf8_starter.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -66,20 +67,26 @@ public Project updateProject(long id, Project project) {
         }
 }
 
-    public void putEmployeeByID(long id, long employeeId) {
-        Optional<Project> optionalProjectproject = repository.findById(id);
-        if(optionalProjectproject.isPresent()) {
-            Project project = optionalProjectproject.get();
-            if(repository.findOverlapsDate(employeeId,project.getStartdatum(), project.getGeplantesEnddatum()).isEmpty()){
-                List<Long> newEmployeeList = project.getEmployee_id();
-                newEmployeeList.add(employeeId);
-                project.setEmployee_id(newEmployeeList);
-                repository.save(project);
-            }else {
-                throw new RuntimeException("Die Zeiträume anderer Projekte überschneiden sich für diesen Mitarbeiter");
-            }
+    public ResponseEntity<String> addEmployeesToProject(long projectId, List<Long> employeeIds) {
+        Optional<Project> optionalProject = repository.findById(projectId);
 
+        if (optionalProject.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Projekt nicht gefunden.");
         }
-    }
 
+        Project project = optionalProject.get();
+        List<Long> existingEmployees = project.getEmployee_id();
+
+        for (Long employeeId : employeeIds) {
+            if (existingEmployees.contains(employeeId)) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body("Mitarbeiter mit ID " + employeeId + " ist bereits im Projekt.");
+            }
+        }
+
+        existingEmployees.addAll(employeeIds);
+        project.setEmployee_id(existingEmployees);
+        repository.save(project);
+        return ResponseEntity.ok("Mitarbeiter erfolgreich hinzugefügt.");
+    }
 }
