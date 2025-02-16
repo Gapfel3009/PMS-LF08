@@ -49,5 +49,4 @@ public class Employee {
     )
     private List<Skill> skill_set;
 
-
 }

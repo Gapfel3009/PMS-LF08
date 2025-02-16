@@ -2,6 +2,7 @@ package de.szut.lf8_starter;
 
 import de.szut.lf8_starter.model.Employee;
 import de.szut.lf8_starter.model.Project;
+import de.szut.lf8_starter.service.EmployeeService;
 import de.szut.lf8_starter.service.ProjectService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,6 @@ public class ProjectController {
 
 
     private ProjectService projectService;
-
     public ProjectController(ProjectService projectService) {
         this.projectService = projectService;
     }
@@ -70,4 +70,5 @@ public ResponseEntity<Project> updateProject(@PathVariable long id, @RequestBody
 public void putEmployee(@PathVariable int id, @PathVariable int employeeId) {
     projectService.putEmployeeByID(id,employeeId);
 }
+
 }
