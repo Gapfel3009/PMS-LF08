@@ -65,7 +65,7 @@ public Project updateProject(long id, Project project) {
             existingProject.setEmployee_id(project.getEmployee_id());
             return repository.save(existingProject);
         }else{
-            throw new RuntimeException("Projekt mit der ID " + id +" nicht gefunden");
+            throw new ResourceNotFoundException("Projekt mit der ID " + id +" nicht gefunden");
         }
 }
 
